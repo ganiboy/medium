@@ -11,7 +11,7 @@ object filter_push_down_analysis extends App{
 
   val spark = SparkSession.builder().config(sparkConf).getOrCreate()
   val df = spark.read.format("csv")
-          .option("path", "/Users/g0m0467/Desktop/personal/medium/customers-100.csv")
+          .option("path", "customers-100.csv")
           .option("inferSchema", "true")
           .option("header", "true").load()
 
