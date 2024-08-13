@@ -28,12 +28,12 @@ object catalyst_optimizer extends App{
 //  Predicate Pushdown
   val concat_names = df.withColumn("full_name", concat(col("first_name"),col("last_name")))
   val predicate_push_down_df = concat_names.filter(col("salary") === 90263.05)
+  predicate_push_down_df.show(false)
   predicate_push_down_df.explain(true)
 
 //  constant_folding
   val constant_folding = df.select(col("id"), lit(50) + lit(70) as "total")
+  constant_folding.show(false)
   constant_folding.explain(true)
-
-
 
 }
