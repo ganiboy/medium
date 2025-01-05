@@ -31,15 +31,17 @@ def full_name(fist_name, last_name, gender, salary):
 def country(country):
     return True if country in broadcast_var.value else False
 
-
+'''
 # udf
 name = udf(full_name, StringType())
 test_acc_sal = udf(add_accum, DecimalType())
 country_flag = udf(country, BooleanType())
 
-
+'''
 df = spark.read.format("parquet").option("path", "/Users/ganeshmoorthy/Desktop/coding/medium/input/userdata1.parquet").load()
 # df.printSchema()
+time.sleep(100000)
+'''
 # df.orderBy("salary").show()
 # flag = df.select("country").withColumn("flag", country_flag(col("country")))
 # flag.show()
@@ -50,7 +52,6 @@ full_name.show()
 print(male_acc.value, female_acc, male_sal, female_sal, test_acc.value)
 
 
-'''
 gender_count_and_sal = df.groupBy("gender").agg(format_number(sum("salary"),2).alias("gender_salary"))
 higher_sal = df.filter("salary > 200000")
 # higher_sal.show(10, False)
